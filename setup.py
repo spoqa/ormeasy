@@ -28,8 +28,9 @@ def get_version():
             raise ValueError('could not find __version_info__')
 
 
-tests_require = ['pytest']
+tests_require = ['pytest', 'import-order', 'flake8']
 install_requires = ['alembic', 'sqlalchemy']
+docs_require = ['Sphinx']
 
 
 setup(
@@ -44,6 +45,7 @@ setup(
     install_requires=install_requires,
     extras_require={
         'tests': tests_require,
+        'docs': docs_require,
     },
     tests_require=tests_require,
     classifiers=[]

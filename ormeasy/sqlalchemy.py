@@ -2,8 +2,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 """
-import typing
 import contextlib
+import typing
 
 from sqlalchemy.engine import Engine
 from sqlalchemy.schema import MetaData
@@ -17,7 +17,7 @@ def repr_entity(entity: object) -> str:
     these attributes instead of its primary keys.
 
 
-    .. code-block:: python
+    .. code-block::
 
        from sqlalchemy.ext.declarative import as_declarative
        from ormeasy.sqlalchemy import repr_entity
@@ -79,8 +79,8 @@ def test_connection(
 
     .. seealso::
 
-       <http://docs.sqlalchemy.org/en/latest/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites>
-          Documentation of the SQLAlchemy session used in test suites.
+       Documentation of the SQLAlchemy session used in test suites.
+          <http://docs.sqlalchemy.org/en/latest/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites>
 
     """  # noqa
     if real_transaction:

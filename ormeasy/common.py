@@ -3,8 +3,8 @@
 
 """
 import importlib
-import pkgutil
 import os
+import pkgutil
 import typing
 
 __all__ = 'get_all_modules', 'import_all_modules',
