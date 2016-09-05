@@ -36,7 +36,7 @@ docs_require = ['Sphinx']
 setup(
     name='ormeasy',
     version=get_version(),
-    description='SQLAlchemy configuration easily.',
+    description='ORM configuration easily.',
     long_description=readme(),
     license='MIT',
     author='Kang Hyojun',
@@ -48,5 +48,18 @@ setup(
         'docs': docs_require,
     },
     tests_require=tests_require,
-    classifiers=[]
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Environment :: Other Environment',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: Unix',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Topic :: Database :: Front-Ends',
+    ]
 )
