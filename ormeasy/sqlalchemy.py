@@ -42,6 +42,14 @@ def test_connection(
     ctx: object, metadata: MetaData, engine: Engine,
     real_transaction: bool=False
 ) -> typing.Generator:
+    """Joining a SQLAlchemy session into an external transaction for test suit.
+
+    .. seealso::
+
+       <http://docs.sqlalchemy.org/en/latest/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites>
+          Documentation of the SQLAlchemy session used in test suites.
+
+    """  # noqa
     if real_transaction:
         metadata.create_all(engine)
         try:
