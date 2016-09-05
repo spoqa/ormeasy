@@ -16,11 +16,44 @@ def repr_entity(entity: object) -> str:
     If the class specified ``__repr_columns__`` it prints
     these attributes instead of its primary keys.
 
+
+    .. code-block:: python
+
+       from sqlalchemy.ext.declarative import as_declarative
+       from ormeasy.sqlalchemy import repr_entity
+
+       @as_declarative()
+       class Base:
+
+          def __repr__(self):
+              return repr_entity(self)
+
+
+       class Song(Base):
+
+          __tablename__ = 'song'
+
+          __repr_columns__ = 'name', 'genre'
+
+          id = Column(Integer, primary_key=True)
+
+          name = Column(Unicode)
+
+          genre = Column(Unicode)
+
+
+       print(repr(Song(name='hello', genre='brit-pop'))) # it prints `<Song name=hello, genre=brit-pop>`
+
+    .. seealso::
+
+       ``as_declarative``
+          http://docs.sqlalchemy.org/en/latest/orm/extensions/declarative/api.html#sqlalchemy.ext.declarative.as_declarative
+
     :param entity: an object to make a representation string
     :return: a representation string
     :rtype: :class:`str`
 
-    """
+    """  # noqa
     cls = type(entity)
     mod = cls.__module__
     name = ('' if mod == '__main__ ' else mod + '.') + cls.__qualname__

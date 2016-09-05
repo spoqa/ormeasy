@@ -26,7 +26,7 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
     if module_spec.submodule_search_locations:
         module_names = {
             name
-            for _, name,_ in pkgutil.walk_packages(
+            for _, name, _ in pkgutil.walk_packages(
                 module_spec.submodule_search_locations,
                 prefix=module_name_with_dot
             )
@@ -34,7 +34,7 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
     else:
         module_names = {
             name
-            for _, name,_ in pkgutil.walk_packages(
+            for _, name, _ in pkgutil.walk_packages(
                 [os.path.dirname(module_spec.origin)]
             )
             if name.startswith(module_name_with_dot) or name == module_name
@@ -43,7 +43,10 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
 
 
 def import_all_modules(module_name: str) -> typing.AbstractSet[str]:
-    """Import all modules.
+    """Import all modules. Maybe it is useful when populate revision script
+    in alembic with ``--autogenerate`` option. Since alembic can only detect a
+    change/creation of an object that imported in runtime, importing all
+    modules helps entity to track in migration script properly.
 
     .. code-block:
 
@@ -57,4 +60,3 @@ def import_all_modules(module_name: str) -> typing.AbstractSet[str]:
     for module_name in modules:
         importlib.import_module(module_name)
     return modules
-
