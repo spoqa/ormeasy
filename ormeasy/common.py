@@ -24,13 +24,13 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
        {'ormeasy.common'}
 
     """
-    root_module, *_ = module_name.split('.')
-    module_spec = importlib.machinery.PathFinder.find_spec(root_module)
+    root_mod, *_ = module_name.split('.')
+    module_spec = importlib.machinery.PathFinder.find_spec(root_mod)
     if not module_spec:
         raise ValueError(
-            '{!s} inexists or is not a python module'.format(module_name)
+            '{!s} inexists or is not a python module'.format(root_mod)
         )
-    module_name_with_dot = module_name + '.'
+    module_name_with_dot = root_mod + '.'
     if module_spec.submodule_search_locations:
         module_names = {
             name
@@ -47,7 +47,7 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
             )
             if name.startswith(module_name_with_dot) or name == module_name
         }
-    return module_names
+    return {m for m in module_names if m.startswith(module_name)}
 
 
 def import_all_modules(module_name: str) -> typing.AbstractSet[str]:
