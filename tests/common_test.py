@@ -17,9 +17,5 @@ def test_get_all_modules():
 
 def test_get_all_sub_modules():
     assert get_all_modules('urllib.error') == {
-        'urllib.error.request',
-        'urllib.error.robotparser',
-        'urllib.error.response',
-        'urllib.error.error',
-        'urllib.error.parse',
+        'urllib.error',
     }
