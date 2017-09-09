@@ -13,3 +13,13 @@ def test_get_all_modules():
     }
     with raises(ValueError):
         assert get_all_modules('asdf')
+
+
+def test_get_all_sub_modules():
+    assert get_all_modules('urllib.error') == {
+        'urllib.error.request',
+        'urllib.error.robotparser',
+        'urllib.error.response',
+        'urllib.error.error',
+        'urllib.error.parse',
+    }

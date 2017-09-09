@@ -16,8 +16,16 @@ def get_all_modules(module_name: str) -> typing.AbstractSet[str]:
     :param str module_name: The name of root module which want to find.
     :return: The set of module names.
 
+    .. code-block:: python
+
+       >>> get_all_modules('ormeasy')
+       {'ormeasy.alembic', 'ormeasy.common', 'ormeasy.sqlalchemy'}
+       >>> get_all_modules('ormeasy.common')
+       {'ormeasy.common'}
+
     """
-    module_spec = importlib.machinery.PathFinder.find_spec(module_name)
+    root_module, *_ = module_name.split('.')
+    module_spec = importlib.machinery.PathFinder.find_spec(root_module)
     if not module_spec:
         raise ValueError(
             '{!s} inexists or is not a python module'.format(module_name)
