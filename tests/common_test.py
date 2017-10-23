@@ -11,8 +11,11 @@ def test_get_all_modules():
         'urllib.response',
         'urllib.request',
     }
+    assert 'tests.common_test' in get_all_modules('tests')
+    assert get_all_modules('common_test', ['tests']) == {'common_test'}
     with raises(ValueError):
         assert get_all_modules('asdf')
+        assert get_all_modules('tests', ['tests'])
 
 
 def test_get_all_sub_modules():

@@ -12,4 +12,5 @@ class Music:
 
 def test_repr_entity():
     repr_ = repr_entity(Music())
-    assert repr_ == "<sqlalchemy_test.Music name='The box' track_number=6>"
+    expected = "<tests.sqlalchemy_test.Music name='The box' track_number=6>"
+    assert repr_ == expected
