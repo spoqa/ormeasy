@@ -11,7 +11,8 @@ __all__ = 'get_all_modules', 'import_all_modules',
 
 
 def get_all_modules(
-    module_name: str, path: typing.Optional[typing.Sequence[str]]=None,
+    module_name: str,
+    path: typing.Optional[typing.Sequence[str]] = None,
 ) -> typing.AbstractSet[str]:
     """Find all module names from given ``module_name``.
 
@@ -60,7 +61,8 @@ def get_all_modules(
 
 
 def import_all_modules(
-    module_name: str, path: typing.Optional[typing.Sequence[str]]=None,
+    module_name: str,
+    path: typing.Optional[typing.Sequence[str]] = None,
 ) -> typing.AbstractSet[str]:
     """Import all modules. Maybe it is useful when populate revision script
     in alembic with ``--autogenerate`` option. Since alembic can only detect a
