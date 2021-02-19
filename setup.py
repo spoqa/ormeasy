@@ -39,8 +39,8 @@ setup(
     description='ORM configuration easily.',
     long_description=readme(),
     license='MIT',
-    author='Kang Hyojun',
-    author_email='iam.kanghyojun' '@' 'gmail.com',
+    author='Spoqa Creators',
+    author_email='dev' '@' 'spoqa.com',
     packages=find_packages(exclude=['tests']),
     install_requires=install_requires,
     extras_require={
