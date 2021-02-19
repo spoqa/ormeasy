@@ -16,9 +16,14 @@ from .common import import_all_modules
 __all__ = 'upgrade_database',
 
 
-def upgrade_database(config: Config, engine: Engine, metadata: MetaData,
-                     *, revision: str='head',
-                     module_name: typing.Optional[str]=None) -> None:
+def upgrade_database(
+    config: Config,
+    engine: Engine,
+    metadata: MetaData,
+    *,
+    revision: str = 'head',
+    module_name: typing.Optional[str] = None,
+) -> None:
     """Upgrades the database schema to the chosen ``revision`` (default is
     head).
 
