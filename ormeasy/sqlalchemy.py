@@ -72,10 +72,21 @@ def repr_entity(entity: object) -> str:
 
 @contextlib.contextmanager
 def test_connection(
-    ctx: object, metadata: MetaData, engine: Engine,
-    real_transaction: bool=False
+    ctx: object,
+    metadata: MetaData,
+    engine: Engine,
+    real_transaction: bool = False,
+    ctx_connection_attribute_name: str = '_test_fx_connection',
 ) -> typing.Generator:
     """Joining a SQLAlchemy session into an external transaction for test suit.
+
+    :param object ctx: Context object to inject test connection into attribute
+    :param MetaData metadata: SQLAlchemy schema metadata
+    :param bool real_transaction: (Optional) Whether to use engine as connection directly
+                                  or make separate connection. Default: `False`
+    :param str ctx_connection_attribute_name: (Optional) Attribute name for injecting
+                                              test connection to the context object
+                                              Default: `'_test_fx_connection'`
 
     .. seealso::
 
@@ -96,11 +107,11 @@ def test_connection(
         transaction = connection.begin()
         try:
             metadata.create_all(bind=connection)
-            ctx._test_fx_connection = connection
+            setattr(ctx, ctx_connection_attribute_name, connection)
             try:
                 yield connection
             finally:
-                del ctx._test_fx_connection
+                delattr(ctx, ctx_connection_attribute_name)
         finally:
             transaction.rollback()
     finally:
