@@ -39,7 +39,7 @@ async def test_connection(
        from pytest import fixture
 
        @fixture
-       async fx_connection(request, fx_engine: AsyncEngine):
+       async def fx_connection(request, fx_engine: AsyncEngine):
            real_tx = request.config.getoption('--real-tx')
            async with async_test_connection(request, Base.metadata, fx_engine, real_tx) as connection:
                yield connection
