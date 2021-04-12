@@ -1,6 +1,7 @@
 import contextlib
 import sys
 
+from sqlalchemy.schema import MetaData
 try:
     from sqlalchemy.ext.asyncio import create_async_engine
 except ImportError:
@@ -56,7 +57,7 @@ async def test_connection(
             yield connection
         else:
             async with connection.begin() as transaction:
-                await connection.run_sync(Base.metadata.create_all)
+                await connection.run_sync(metadata.create_all)
                 yield connection
                 await transaction.rollback()
     if real_transaction:
