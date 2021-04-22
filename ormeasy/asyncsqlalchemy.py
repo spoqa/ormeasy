@@ -56,10 +56,10 @@ async def test_connection(
         if real_transaction:
             yield connection
         else:
-            async with connection.begin() as transaction:
-                await connection.run_sync(metadata.create_all)
-                yield connection
-                await transaction.rollback()
+            transaction = await connection.begin()
+            await connection.run_sync(metadata.create_all)
+            yield connection
+            await transaction.rollback()
     if real_transaction:
         async with engine.begin() as connection:
             await connection.run_sync(metadata.drop_all)
